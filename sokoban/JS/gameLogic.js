@@ -1,28 +1,38 @@
 let playerMovement = "UP";
-let playerTile;
-let currentTile;
-  
+
+let playerTile = document.getElementsByClassName(Entities.Character)[0];
+let currentTile = Tiles.Space;
+
 let playerPositionY = tileMap01.mapGrid.findIndex(arr1 => arr1.findIndex(arr2 => arr2[0] == "P") != -1);
 let playerPositionX = tileMap01.mapGrid[playerPositionY].findIndex(arr1 => arr1[0] == "P");
 
+let nrOfGoals = tileMap01.mapGrid.flat(2).filter(tile => tile == "G").length;
+let nrOfFilledGoals = 0;
+
 function arrowKeyPress(e){
+ 
+  playerMovement = e.code;
 
   switch(e.code){
-    case "ArrowUp":   playerMovement = "UP"; movePlayer(playerPositionX, playerPositionY - 1); 
+    case "ArrowUp":  
+        movePlayer(playerPositionX, playerPositionY - 1); 
     break;
-    case "ArrowRight": playerMovement = "RIGHT"; movePlayer(playerPositionX + 1, playerPositionY); 
+    case "ArrowRight": 
+        movePlayer(playerPositionX + 1, playerPositionY); 
     break;
-    case "ArrowDown":  playerMovement = "DOWN"; movePlayer(playerPositionX, playerPositionY + 1); 
+    case "ArrowDown":  
+        movePlayer(playerPositionX, playerPositionY + 1); 
     break;
-    case "ArrowLeft": playerMovement = "LEFT"; movePlayer(playerPositionX - 1, playerPositionY); 
+    case "ArrowLeft": 
+        movePlayer(playerPositionX - 1, playerPositionY); 
     break;
   }
 
-  
   if(nrOfFilledGoals == nrOfGoals){
     console.log("you won")
     window.location.reload();
   }
+
 }
 
 function getTile(y, x){
@@ -84,20 +94,19 @@ function movePlayerTile(player, nextTile){
   return false;
 }
 
-let nrOfGoals = 6;
-let nrOfFilledGoals = 0;
+
 
 function moveBlock(blockTile, player){
   let nextTile;
   
   switch(playerMovement){
-    case "UP":  nextTile = getTileObject(blockTile.X, blockTile.Y - 1)
+    case "ArrowUp":  nextTile = getTileObject(blockTile.X, blockTile.Y - 1)
     break;
-    case "DOWN":  nextTile = getTileObject(blockTile.X, blockTile.Y + 1); 
+    case "ArrowDown":  nextTile = getTileObject(blockTile.X, blockTile.Y + 1); 
       break;
-    case "LEFT":  nextTile = getTileObject(blockTile.X - 1, blockTile.Y); 
+    case "ArrowLeft":  nextTile = getTileObject(blockTile.X - 1, blockTile.Y); 
       break;
-    case "RIGHT":  nextTile = getTileObject(blockTile.X + 1, blockTile.Y); 
+    case "ArrowRight":  nextTile = getTileObject(blockTile.X + 1, blockTile.Y); 
       break;
   }
 

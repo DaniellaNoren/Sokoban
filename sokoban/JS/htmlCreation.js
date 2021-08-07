@@ -36,8 +36,6 @@ function createMap(){
       })
       
       document.body.appendChild(mapContainer);
-      currentTile = Tiles.Space;
-      playerTile = document.getElementsByClassName(Entities.Character)[0];
   
     })
   }
