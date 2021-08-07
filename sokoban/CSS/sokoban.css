@@ -9,44 +9,37 @@ body{
     left: 0;
     right: 0;
     bottom: 0;
-
-    width: 50%;
-    height: 50%;
-
- 
+    width: 80%;
+    height: 80%;
 }
-.map, .tile-space{
+ .map, .tile-space{
     background-color: blue;
 }
 .tile{
+    display: inline-block;
     width: 100%;
     height: 100%;
 }
+.entity-block, .tile-goal{
+    border: 1px solid black;
+}
 
 .entity-block{
-    border: 1px solid black;
-    width: 80%;
-    margin: auto;
     background-color: brown;
 }
 
 .entity-player{
     background-color:green;
-    z-index: 99;
-    
 }
 
-.entity-block-goal{
-    background-color: darkred;
-}
 .tile-goal{
     background-color: red;
-    border: 1px solid darkred;
 }
 .tile-wall{
     background-color: gray;
 }
 
-
-
+.entity-block-goal{
+    background-color: purple;
+}
 
