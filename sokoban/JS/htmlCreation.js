@@ -1,5 +1,7 @@
 document.addEventListener('keydown', arrowKeyPress);
 
+let playerTile;
+
 function createCSSstring(nr, size){
     let styleString = "";
     for(let i = 0; i < nr; i++){
@@ -36,6 +38,7 @@ function createMap(){
       })
       
       document.body.appendChild(mapContainer);
+
   
     })
   }
@@ -50,6 +53,7 @@ function createMap(){
   
   function createPlayer(element){
     element.classList.add(Entities.Character);
+    playerTile = element;
   }
   
   function createSpace(element){

@@ -1,6 +1,5 @@
 let playerMovement = "UP";
 
-let playerTile = document.getElementsByClassName(Entities.Character)[0];
 let currentTile = Tiles.Space;
 
 let playerPositionY = tileMap01.mapGrid.findIndex(arr1 => arr1.findIndex(arr2 => arr2[0] == "P") != -1);
@@ -15,15 +14,19 @@ function arrowKeyPress(e){
 
   switch(e.code){
     case "ArrowUp":  
+        e.preventDefault();
         movePlayer(playerPositionX, playerPositionY - 1); 
     break;
     case "ArrowRight": 
+        e.preventDefault();
         movePlayer(playerPositionX + 1, playerPositionY); 
     break;
     case "ArrowDown":  
+        e.preventDefault();
         movePlayer(playerPositionX, playerPositionY + 1); 
     break;
     case "ArrowLeft": 
+        e.preventDefault();
         movePlayer(playerPositionX - 1, playerPositionY); 
     break;
   }
