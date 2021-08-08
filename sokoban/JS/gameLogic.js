@@ -1,5 +1,5 @@
 let playerMovement = "UP";
-
+let playerTile;
 let currentTile = Tiles.Space;
 
 let playerPositionY = tileMap01.mapGrid.findIndex(arr1 => arr1.findIndex(arr2 => arr2[0] == "P") != -1);
@@ -8,8 +8,10 @@ let playerPositionX = tileMap01.mapGrid[playerPositionY].findIndex(arr1 => arr1[
 let nrOfGoals = tileMap01.mapGrid.flat(2).filter(tile => tile == "G").length;
 let nrOfFilledGoals = 0;
 
+let nrOfMoves = 0;
+
 function arrowKeyPress(e){
- 
+
   playerMovement = e.code;
 
   switch(e.code){
@@ -21,7 +23,7 @@ function arrowKeyPress(e){
         e.preventDefault();
         movePlayer(playerPositionX + 1, playerPositionY); 
     break;
-    case "ArrowDown":  
+    case "ArrowDown":
         e.preventDefault();
         movePlayer(playerPositionX, playerPositionY + 1); 
     break;
@@ -32,8 +34,7 @@ function arrowKeyPress(e){
   }
 
   if(nrOfFilledGoals == nrOfGoals){
-    console.log("you won")
-    window.location.reload();
+    createResultScreen(nrOfMoves);
   }
 
 }
@@ -66,6 +67,7 @@ function movePlayer(x, y){
   if(movePlayerTile(playerTile, tile)){
     playerPositionX = tile.X;
     playerPositionY = tile.Y;
+    nrOfMoves++;
   }
 
 }
@@ -123,6 +125,7 @@ function moveBlock(blockTile, player){
     
     if(blockCurrentTile == Tiles.Goal){
       blockTile.Tile.classList.replace(Entities.BlockDone, Entities.Character);
+      blockTile.Tile.classList.replace(Entities.Block, Entities.Character);
       nrOfFilledGoals--;
     }else{
       blockTile.Tile.classList.replace(Entities.Block, Entities.Character);

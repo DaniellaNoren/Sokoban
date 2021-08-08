@@ -1,6 +1,5 @@
-document.addEventListener('keydown', arrowKeyPress);
 
-let playerTile;
+document.addEventListener('keydown', arrowKeyPress);
 
 function createCSSstring(nr, size){
     let styleString = "";
@@ -11,7 +10,7 @@ function createCSSstring(nr, size){
   }
   
 function createMap(){
-  
+
     let idCounter = 0;
     let mapContainer = document.createElement("div");
     mapContainer.className = "map";
@@ -41,6 +40,34 @@ function createMap(){
 
   
     })
+  }
+
+  function createResultScreen(result){
+
+    let resultScreen = document.createElement("div");
+    resultScreen.className = "result-screen";
+
+    let resultMenu = document.createElement("div");
+    resultMenu.className = "result-menu";
+
+    let resultHeader = document.createElement("h1");
+    resultHeader.innerHTML = "You won!"
+
+    let restartButton = document.createElement("button");
+    restartButton.innerHTML = "Play again"
+    restartButton.addEventListener("click", () => window.location.reload());
+
+    let resultText = document.createElement("p");
+    resultText.innerHTML = `You completed the level in ${result} steps!`
+
+    resultMenu.appendChild(resultHeader);
+    resultMenu.appendChild(resultText);
+    resultMenu.appendChild(restartButton);
+ 
+    resultScreen.appendChild(resultMenu);
+
+    document.body.appendChild(resultScreen);
+  
   }
 
   function createBlock(element){
